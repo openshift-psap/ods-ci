@@ -45,6 +45,7 @@ RUN  chmod +x run.sh
 COPY requirements.txt setup.py .
 RUN  python3 --version
 RUN  python3 -m venv venv && source venv/bin/activate &&  pip3 install --upgrade pip && venv/bin/pip3 install -r requirements.txt
+COPY test-variables.yml.template  .
 
 # set the non-root user
 RUN chgrp -R 1001 $HOME/ods-ci && chown -R 1001 $HOME/ods-ci && chmod -R 744 $HOME/ods-ci
