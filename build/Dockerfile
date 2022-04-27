@@ -9,7 +9,7 @@ ARG OC_CHANNEL=stable
 
 
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm &&\
-    dnf install -y python38 jq git unzip chromium chromedriver redhat-lsb-core &&\
+    dnf install -y python38 jq git unzip chromium chromedriver redhat-lsb-core s3cmd &&\
     dnf clean all
 
 ## Install yq in the image
