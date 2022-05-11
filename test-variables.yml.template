@@ -9,6 +9,7 @@ ODH_DASHBOARD_URL: "${ODH_DASHBOARD_URL}"
 RHODS_PROMETHEUS_URL: "https://prometheus-redhat-ods-monitoring.apps.my-cluster.test.redhat.com/"
 # RHODS_PROMETHEUS_TOKEN can be obtained running: oc serviceaccounts get-token prometheus -n redhat-ods-monitoring #
 RHODS_PROMETHEUS_TOKEN: "prometheus-token"
+RHODS_VERSION: "${RHODS_VERSION}"
 TEST_USER:
   AUTH_TYPE: ${TEST_USER_AUTH_TYPE}
   USERNAME: ${TEST_USER_USERNAME}
