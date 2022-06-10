@@ -43,7 +43,7 @@ COPY utils/scripts/logger.py  utils/scripts/logger.py
 COPY utils/scripts/util.py  utils/scripts/util.py
 RUN  chmod +x run.sh
 COPY requirements.txt setup.py .
-RUN  virtualenv -p=/usr/bin/python3.8 venv && source venv/bin/activate && pip3 install --upgrade pip && venv/bin/pip3 install -r requirements.txt
+RUN  virtualenv -p /usr/bin/python3.8 venv && source venv/bin/activate && pip3 install --upgrade pip && venv/bin/pip3 install -r requirements.txt
 COPY test-variables.yml.template  .
 
 # set the non-root user
