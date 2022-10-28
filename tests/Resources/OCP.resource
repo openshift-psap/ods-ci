@@ -48,3 +48,10 @@ Verify CR Status
     Should Match  ${cr_obj_dictionary.metadata.name}  ${cr_name}
     Should Be Equal  ${cr_obj_dictionary.status.conditions[0].type}  Available
     Should Be Equal  ${cr_obj_dictionary.status.conditions[0].status}  True
+
+Namespace Should Not Exist
+    [Arguments]    ${namespace}
+    ${present}=     Run Keyword And Return Status   OpenshiftLibrary.Oc Get    kind=Project  name=${namespace}
+    IF    ${present} == ${TRUE}
+        Fail   msg=The namespace ${namespace} exists!
+    END
