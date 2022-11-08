@@ -38,8 +38,8 @@ ${NOTIFICATION_DRAWER_CLOSE_BTN}=  //div[@class="pf-c-drawer__panel"]/div/div//b
 ${NOTIFICATION_DRAWER_CLOSED}=  //div[@class="pf-c-drawer__panel" and @hidden=""]
 ${GROUPS_CONFIG_CM}=    groups-config
 ${RHODS_GROUPS_CONFIG_CM}=    rhods-groups-config
-${RHODS_LOGO_XPATH}=    //img[@alt="Open Data Hub Logo"]
-#${RHODS_LOGO_XPATH}=    //img[@alt="Red Hat OpenShift Data Science Logo"]
+#${RHODS_LOGO_XPATH}=    //img[@alt="Open Data Hub Logo"]
+${RHODS_LOGO_XPATH}=    //img[@alt="Red Hat OpenShift Data Science Logo"]
 
 
 *** Keywords ***
@@ -49,7 +49,8 @@ Launch Dashboard
   ...            ${browser}=${BROWSER.NAME}   ${browser_options}=${BROWSER.OPTIONS}
   Open Browser  ${dashboard_url}  browser=${browser}  options=${browser_options}
   Login To RHODS Dashboard  ${ocp_user_name}  ${ocp_user_pw}  ${ocp_user_auth_type}
-  Wait for RHODS Dashboard to Load    dashboard_title="Open Data Hub"
+  Wait for RHODS Dashboard to Load
+  # Wait for RHODS Dashboard to Load    dashboard_title="Open Data Hub"
 
 
 Authorize rhods-dashboard service account
