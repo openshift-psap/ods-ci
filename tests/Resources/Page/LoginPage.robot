@@ -45,7 +45,7 @@ Login To Openshift
     IF  ${select_auth_type}  Select Login Authentication Type  ${ocp_user_auth_type}
     Wait Until Page Contains  Log in to your account
     Input Text  id=inputUsername  ${ocp_user_name}
-    Input Text  id=inputPassword  ${ocp_user_pw}
+    Input Password  id=inputPassword  ${ocp_user_pw}
     Click Element  xpath=/html/body/div/div/main/div/form/div[4]/button
     Maybe Skip Tour
 
