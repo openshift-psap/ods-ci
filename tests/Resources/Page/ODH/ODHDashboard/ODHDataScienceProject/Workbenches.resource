@@ -46,19 +46,7 @@ Create Workbench
         ${envs_copy}=    Copy List    ${envs}    deepcopy=${TRUE}
         Add Environment Variables In Workbench    env_variables=${envs_copy}
     END
-    IF    "${storage}" == "Persistent"
-        IF    ${pv_existent} == ${TRUE}
-            Click Element    xpath=//input[@name="persistent-existing-storage-type-radio"]
-            Select An Existent PV   name=${pv_name}
-        ELSE IF   ${pv_existent} == ${FALSE}
-            Click Element   xpath=//input[@name="persistent-new-storage-type-radio"]
-            Fill In New PV Data    name=${pv_name}    description=${pv_description}  size=${pv_size}
-        ELSE
-            Log    msg="pv_existent" argument is required when selected storage type is "Persistent"   level=ERROR
-        END
-    ELSE
-        Click Element   xpath=//input[@name="ephemeral-storage-type-radio"]
-    END
+
     IF    ${press_cancel} == ${TRUE}
         Click Button    ${GENERIC_CANCEL_BTN_XP}
     ELSE
