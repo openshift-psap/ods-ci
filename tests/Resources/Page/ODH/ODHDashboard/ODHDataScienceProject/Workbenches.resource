@@ -136,41 +136,41 @@ Select Workbench Container Size
 Workbench Should Be Listed
     [Documentation]    Checks a workbench is listed in the DS Project details page
     [Arguments]     ${workbench_title}
-    Run keyword And Continue On Failure     
-    ...    Wait Until Page Contains Element    
+    Run keyword And Continue On Failure
+    ...    Wait Until Page Contains Element
     ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]
 
 Workbench Should Not Be Listed
     [Documentation]    Checks a workbench is not listed in the DS Project details page
     [Arguments]     ${workbench_title}
-    Run keyword And Continue On Failure     
-    ...    Wait Until Page Does Not Contain Element    
+    Run keyword And Continue On Failure
+    ...    Wait Until Page Does Not Contain Element
     ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]
 
 Workbench Status Should Be
     [Documentation]    Checks a workbench status is the expected one in the DS Project details page
     [Arguments]     ${workbench_title}      ${status}
-    Run keyword And Continue On Failure     
-    ...    Page Should Contain Element    
+    Run keyword And Continue On Failure
+    ...    Page Should Contain Element
     ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p[text()="${status}"]
 
 Wait Until Workbench Is Started
     [Documentation]    Waits until workbench status is "RUNNING" in the DS Project details page
     [Arguments]     ${workbench_title}      ${timeout}=30s
-    Wait Until Keyword Succeeds    ${timeout}    5s      Workbench Status Should Be      
+    Wait Until Keyword Succeeds    ${timeout}    5s      Workbench Status Should Be
     ...    workbench_title=${workbench_title}   status=${WORKBENCH_STATUS_RUNNING}
 
 Start Workbench
     [Documentation]    Starts a workbench from the DS Project details page
-    [Arguments]     ${workbench_title}
-    ${is_stopped}=      Run Keyword And Return Status   Workbench Status Should Be      
+    [Arguments]     ${workbench_title}      ${timeout}=30s
+    ${is_stopped}=      Run Keyword And Return Status   Workbench Status Should Be
     ...    workbench_title=${workbench_title}   status=${WORKBENCH_STATUS_STOPPED}
     IF    ${is_stopped} == ${TRUE}
         Click Element       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//span[@class="pf-c-switch__toggle"]
     ELSE
         Log     msg=Cannot start ${workbench_title} workbench because it is not stopped.
     END
-    Wait Until Workbench Is Started     workbench_title=${workbench_title}
+    Wait Until Workbench Is Started     workbench_title=${workbench_title}   timeout=${timeout}
 
 Access To Workbench
     [Documentation]    Gets access to a workbench from DS Project details page after it got launched
