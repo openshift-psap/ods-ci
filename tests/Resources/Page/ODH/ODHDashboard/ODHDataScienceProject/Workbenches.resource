@@ -61,8 +61,6 @@ Create Workbench
         ELSE
             Log    msg="pv_existent" argument not set, using default PV settings"   level=WARN
         END
-    ELSE
-        Click Element   xpath=//input[@name="ephemeral-storage-type-radio"]
     END
     IF    ${press_cancel} == ${TRUE}
         Click Button    ${GENERIC_CANCEL_BTN_XP}
