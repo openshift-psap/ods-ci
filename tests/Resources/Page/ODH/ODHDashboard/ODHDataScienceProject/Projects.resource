@@ -26,7 +26,7 @@ Open Data Science Projects Home Page
     Click Link      Data Science Projects
     Wait Until Page Contains    View your existing projects or create new projects.    timeout=30
     Wait Until Page Contains Element    ${DS_PROJECT_XP}    timeout=30
-    Maybe Wait For Dashboard Loading Spinner Page
+    Wait Until Page Contains    Create data science project    timeout=30
 
 Is Data Science Projects Page Open
     [Documentation]    Checks if Data Science Projects home page is open. Returns TRUE or FALSE
@@ -43,7 +43,6 @@ Open Data Science Project Details Page
     END
     Click Link    ${project_title}
     Wait Until Project Is Open    project_title=${project_title}
-    Maybe Wait For Dashboard Loading Spinner Page
 
 Delete Data Science Project
     [Documentation]    Deletes a given DS project. It allows cancelling the operation
@@ -63,7 +62,6 @@ Wait Until Project Is Open
     [Documentation]    Waits until a DS Project Details page is laoded
     [Arguments]     ${project_title}
     Wait Until Page Contains Element    xpath=//h1[contains(text(),"${project_title}")]    timeout=30
-    Maybe Wait For Dashboard Loading Spinner Page
 
 Project Should Be Listed
     [Documentation]    Checks a Project is available in DS Project home page
