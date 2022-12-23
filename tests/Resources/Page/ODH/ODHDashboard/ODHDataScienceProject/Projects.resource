@@ -31,7 +31,7 @@ Open Data Science Projects Home Page
 
 Is Data Science Projects Page Open
     [Documentation]    Checks if Data Science Projects home page is open. Returns TRUE or FALSE
-    Close Generic Modal If Present
+
     ${page_open}=   Run Keyword And Return Status   Page Should Contain Element     ${DS_PROJECT_XP}
     [Return]    ${page_open}
 
