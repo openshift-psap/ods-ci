@@ -154,6 +154,13 @@ Select Workbench Container Size
     Wait Until Page Contains Element    ${WORKBENCH_SIZE_ITEM_BTN_XP}/span[text()="${size_name}"]
     Click Element    ${WORKBENCH_SIZE_ITEM_BTN_XP}/span[text()="${size_name}"]
 
+Workbench is Listed
+    [Documentation]    Checks a workbench is listed in the DS Project details page
+    [Arguments]     ${workbench_title}
+    Run keyword And Continue On Failure
+    ...    Page Should Contain Element
+    ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]
+
 Workbench Should Be Listed
     [Documentation]    Checks a workbench is listed in the DS Project details page
     [Arguments]     ${workbench_title}
@@ -177,9 +184,10 @@ Workbench Status Should Be
 
 Wait Until Workbench Is Started
     [Documentation]    Waits until workbench status is "RUNNING" in the DS Project details page
-    [Arguments]     ${workbench_title}      ${timeout}=30s
-    Wait Until Keyword Succeeds    ${timeout}    5s      Workbench Status Should Be      
-    ...    workbench_title=${workbench_title}   status=${WORKBENCH_STATUS_RUNNING}
+    [Arguments]     ${workbench_title}      ${timeout}=30s    ${status}=${WORKBENCH_STATUS_RUNNING}
+
+    Wait Until Page Contains Element
+    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p[text()="${status}"]    timeout=${timeout}
 
 Start Workbench
     [Documentation]    Starts a workbench from the DS Project details page
