@@ -61,7 +61,7 @@ Create Workbench
             Click Element   xpath=//input[@name="persistent-new-storage-type-radio"]
             Fill In New PV Data    name=${pv_name}    description=${pv_description}  size=${pv_size}
         ELSE
-            Log    msg="pv_existent" argument not set, using default PV settings"   level=WARN
+            Log    msg="pv_existent" argument not set, using default PV settings   level=WARN
         END
     END
     IF    ${press_cancel} == ${TRUE}
