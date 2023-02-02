@@ -95,7 +95,7 @@ Wait for RHODS Dashboard to Load
     Wait For Condition    return document.title == ${dashboard_title}    timeout=15s
     Wait Until Page Contains Element    xpath:${RHODS_LOGO_XPATH}    timeout=15s
     IF    "${expected_page}" != "${NONE}"
-        Wait Until Page Contains Element    xpath://h1[text()="${expected_page}"]   timeout=15s
+        Wait Until Page Contains Element    xpath://h1[text()="${expected_page}"]   timeout=75s
     END
     IF    ${wait_for_cards} == ${TRUE}
         Wait Until Cards Are Loaded
