@@ -7,7 +7,7 @@ Resource       Projects.resource
 
 
 *** Variables ***
-${WORKBENCH_SECTION_XP}=             xpath=//div[@id="workbenches"]
+${WORKBENCH_SECTION_XP}=             xpath=//div[div//h4[@id="workbenches-title"]]
 ${WORKBENCH_CREATE_BTN_XP}=           xpath=//button[text()="Create workbench"]
 ${WORKBENCH_CREATE_BTN_2_XP}=         xpath=//button[@id="create-button"]
 ${WORKBENCH_NAME_INPUT_XP}=               xpath=//input[@name="workbench-name"]
