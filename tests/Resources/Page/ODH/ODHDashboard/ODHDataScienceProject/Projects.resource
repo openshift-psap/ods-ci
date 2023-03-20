@@ -26,7 +26,6 @@ Open Data Science Projects Home Page
     SeleniumLibrary.Click Link      Data Science Projects
     Wait for RHODS Dashboard to Load    wait_for_cards=${FALSE}    expected_page=Data science projects
     SeleniumLibrary.Wait Until Page Contains    View your existing projects or create new projects.    timeout=30
-    Maybe Wait For Dashboard Loading Spinner Page
 
 Is Data Science Projects Page Open
     [Documentation]    Checks if Data Science Projects home page is open. Returns TRUE or FALSE
@@ -63,7 +62,6 @@ Wait Until Project Is Open
     [Documentation]    Waits until a DS Project Details page is laoded
     [Arguments]     ${project_title}
     Wait Until Page Contains Element    xpath=//h1[contains(text(),"${project_title}")]    timeout=30
-    Maybe Wait For Dashboard Loading Spinner Page
 
 Project Should Be Listed
     [Documentation]    Checks a Project is available in DS Project home page
