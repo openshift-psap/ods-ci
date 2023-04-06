@@ -7,7 +7,7 @@ Resource       Projects.resource
 
 
 *** Variables ***
-${WORKBENCH_SECTION_XP}=             xpath=//div[div//h4[@id="workbenches-title"]]
+${WORKBENCH_SECTION_XP}=             xpath=//div[div//h2[@id="workbenches-title"]]
 ${WORKBENCH_CREATE_BTN_XP}=           xpath=//button[text()="Create workbench"]
 ${WORKBENCH_CREATE_BTN_2_XP}=         xpath=//button[@id="create-button"]
 ${WORKBENCH_NAME_INPUT_XP}=               xpath=//input[@name="workbench-name"]
@@ -166,21 +166,21 @@ Workbench Should Be Listed
     [Arguments]     ${workbench_title}
     Run keyword And Continue On Failure
     ...    Wait Until Page Contains Element
-    ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]
+    ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]
 
 Workbench Should Not Be Listed
     [Documentation]    Checks a workbench is not listed in the DS Project details page
     [Arguments]     ${workbench_title}
     Run keyword And Continue On Failure
     ...    Wait Until Page Does Not Contain Element
-    ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]
+    ...        ${WORKBENCH_SECTION_XP}//td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]
 
 Workbench Status Should Be
     [Documentation]    Checks a workbench status is the expected one in the DS Project details page
     [Arguments]     ${workbench_title}      ${status}
     Run keyword And Continue On Failure
     ...    Page Should Contain Element
-    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p[text()="${status}"]
+    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//p[starts-with(text(), "${status}")]
 
 Status Error Icon Should Appear
     [Documentation]    Checks if the error icon appears on the given workbench
@@ -188,8 +188,8 @@ Status Error Icon Should Appear
     Reload Page
     Wait Until Project Is Open    project_title=${PRJ_TITLE}
     Page Should Contain Element
-    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p//${ERROR_ICON_XP}    # robocop: disable
-    Mouse Over    ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p//${ERROR_ICON_XP}    # robocop: disable
+    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//p//${ERROR_ICON_XP}    # robocop: disable
+    Mouse Over    ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//p//${ERROR_ICON_XP}    # robocop: disable
     Wait Until Page Contains    Insufficient resources to start
 
 Wait Until Workbench Is Started
@@ -197,7 +197,7 @@ Wait Until Workbench Is Started
     [Arguments]     ${workbench_title}      ${timeout}=40s    ${status}=${WORKBENCH_STATUS_RUNNING}
 
     Wait Until Page Contains Element
-    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p[text()="${status}"]    timeout=${timeout}
+    ...        ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//p[starts-with(text(), "${status}")]    timeout=${timeout}
 
 Wait Until Workbench Is Stopped
     [Documentation]    Waits until workbench status is "RUNNING" in the DS Project details page
@@ -218,7 +218,7 @@ Start Workbench
     ${is_stopped}=      Run Keyword And Return Status   Workbench Status Should Be
     ...    workbench_title=${workbench_title}   status=${WORKBENCH_STATUS_STOPPED}
     IF    ${is_stopped} == ${TRUE}
-        Click Element       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//span[@class="pf-c-switch__toggle"]
+        Click Element       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//span[@class="pf-c-switch__toggle"]
     ELSE
         Log     msg=Cannot start ${workbench_title} workbench because it is not stopped.
     END
@@ -250,7 +250,7 @@ Launch And Access Workbench
 Open Workbench
     [Documentation]    Clicks on "open" link for a given workbench
     [Arguments]    ${workbench_title}
-    Click Link       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td//a[text()="Open"]
+    Click Link       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td//a[text()="Open"]
     Switch Window   NEW
 
 Stop Workbench
@@ -259,7 +259,7 @@ Stop Workbench
     ${is_started}=      Run Keyword And Return Status   Workbench Status Should Be
     ...    workbench_title=${workbench_title}   status=${WORKBENCH_STATUS_RUNNING}
     IF    ${is_started} == ${TRUE}
-        Click Element       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//span[@class="pf-c-switch__toggle"]
+        Click Element       ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//span[@class="pf-c-switch__toggle"]
         Wait Until Generic Modal Appears
         Handle Stop Workbench Confirmation Modal    press_cancel=${press_cancel}
     ELSE
@@ -349,7 +349,7 @@ Open Notebook Event Log
     [Documentation]    Opens the event log of the given workbench
     [Arguments]    ${workbench_title}    ${exp_preview_text}=${NONE}
     Click Element
-    ...    ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h4[div[text()="${workbench_title}"]]]/td[@data-label="Status"]//p[text()="${WORKBENCH_STATUS_STARTING}"]    # robocop: disable
+    ...    ${WORKBENCH_SECTION_XP}//tr[td[@data-label="Name"]/h3[div[starts-with(text(), "${workbench_title}")]]]/td[@data-label="Status"]//p[starts-with(text(), "${WORKBENCH_STATUS_STARTING}")]    # robocop: disable
     Page Should Contain Event Log Preview    expected_text=${exp_preview_text}
     Click Element    xpath=//div[contains(@class,"popover")]//footer/button[text()="Event log"]
     Wait Until Generic Modal Appears
